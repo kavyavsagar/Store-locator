@@ -1,0 +1,100 @@
+<html>
+<head>
+    <title>Store Locator Demo</title>
+    <meta name="viewport" content="width=200" />
+    <meta name="viewport" content="initial-scale=2" />
+
+    <style type="text/css">
+      body{margin: 10px;}
+      input{margin: 10px;}
+      header{height: 50px; border-bottom: 1px solid #999; font-size: 30px; font-family: sans-serif;}
+      .showbox{
+        float: left;
+        margin:10px;
+        width: 40px;
+        height: 40px;
+        border: 2px solid green;
+        background-color: #fff;
+        line-height: 40px;
+        text-align: center;   
+      }   
+      .effects{
+        transform: scale(1.5); 
+        -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+        transition: width 2s, height 2s, transform 2s;
+       }
+       #I:hover{
+        transform: scale(1.5); 
+        -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+        transition: width 2s, height 2s, transform 2s;
+       }
+    </style>
+    <script type="text/javascript">
+          var can, ctx,  n = 0, tabl;
+
+          function init() {
+              can = document.getElementById("can");
+              ctx = can.getContext("2d");  
+              showD();                        
+          }
+
+          function showD() {              
+              ctx.font = "24pt Helvetica";
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";
+              ctx.fillStyle = "rgb(64, 255, 64)";
+              ctx.clearRect(0, 0, can.width, can.height);              
+          }
+    
+          function dolocate(val) {             
+              n = val.trim();
+              tabl = $('.showbox');
+              //if(tabl.hasClass( "effects" )) tabl.removeClass("effects");
+              $("#"+n).addClass("effects");
+
+              setTimeout(function(){
+                if(tabl.hasClass( "effects" )) tabl.removeClass("effects");
+              },2000);              
+          }     
+
+      </script>
+</head>
+<body onload="init()">
+    <header>Store Locator Demo</header>
+    <!-- give canvas -->
+    <h2>Shops</h2>
+    <canvas id="can" height="200" width="200" style="border:1px solid black; margin: 10px;" >     
+    </canvas>
+    <br />
+    <!-- float inputs over canvas -->
+    <div style="position:relative; margin:10px;">
+        <input type="button" value=" A " onclick="dolocate(this.value)"><label>- KFC</label>
+        <input type="button" value=" B " onclick="dolocate(this.value)"><label>- McDonalds</label>
+        <input type="button" value=" C " onclick="dolocate(this.value)"><label>- StarBucks</label>
+        <br />
+        <input type="button" value=" D " onclick="dolocate(this.value)"><label>- Jack & Jones</label>
+        <input type="button" value=" E " onclick="dolocate(this.value)"><label>- Maje</label>
+        <input type="button" value=" F " onclick="dolocate(this.value)"><label>- Escada</label>
+        <br />
+        <input type="button" value=" G " onclick="dolocate(this.value)"><label>- E Max</label>
+        <input type="button" value=" H " onclick="dolocate(this.value)"><label>- Canon</label> 
+        <label>&nbsp;&nbsp;<b>I</b> - Sony</label>       
+    </div>
+    <!-- float shops over canvas -->
+    <div style="position: absolute;top: 140px;left: 20px; width: 200px; height: 200px; z-index: 5;" >
+        <div class="showbox" style=" border-color: green;" id="A">A</div>
+        <div class="showbox" style=" border-color: red;" id="B">B</div>
+        <div class="showbox" style="border-color: blue;" id="C">C</div>
+        <div class="showbox" style=" border-color: green;" id="D">D</div>
+        <div class="showbox" style=" border-color: red;" id="E">E</div>
+        <div class="showbox" style="border-color: blue;" id="F">F</div>
+        <div class="showbox" style=" border-color: green;" id="G">G</div>
+        <div class="showbox" style=" border-color: red;" id="H">H</div>
+        <div class="showbox" style="border-color: blue;" id="I">I</div>
+        <div style="clear: left;"></div>
+    </div>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+</body>
+</html>
